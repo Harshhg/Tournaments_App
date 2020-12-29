@@ -1,0 +1,43 @@
+$backcolor:#7094E6;
+.photobackground {
+    position: relative;
+    height:212px;
+    width:100%;
+    border-radius: 22px;
+    background-color: $backcolor;
+}
+.profileimage{
+    position: absolute;
+    width: 154px;
+    height: 154px;
+    top: 101px;
+    // left: 40%;
+    right:45%;
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 27px;
+}
+.profilepicture{
+    border-radius: 27px;
+}
+.addphoto{
+    margin-top: 50px;
+}
+.addplayericon :hover{
+    cursor: pointer;
+    // border-radius: 15px;
+    // border: 1px solid red;
+}
+.newprofile{
+    // width:100%;
+    margin:-60px auto;
+    padding:60px 300px;
+    height:400px;
+    overflow: auto;
+    background-color: rgba(147, 171, 194, 0.5);
+}
+// .newprofilehead{
+//     // border-bottom: 1px solid black;
+// }
+

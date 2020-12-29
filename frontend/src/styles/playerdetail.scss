@@ -1,0 +1,67 @@
+.playerphoto{
+    // position: absolute;
+    width: 150px;
+    height: 150px;
+    // left: 50px;
+    // top: 50px;
+
+    // border: 1px solid #E2E2E2;
+    // border-radius: 100px;
+    // box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+
+}
+#playerphotos{
+    border-radius: 80px;
+}
+.details{
+    padding:20px;
+    padding-left: 100px;
+    // margin:50px;
+}
+.new{
+    padding:20px;
+    background-color: lightgray;
+}
+.newhead{
+    padding:10px 0px;
+    border-bottom: 1px solid grey;
+}
+
+.svg-wrapper {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    width: 500px;
+  }
+  .shape1,
+  .shape2 {
+    stroke-dasharray: 1120;
+    stroke-width: 5px;
+    fill: transparent;
+    stroke: #19f6e8;
+    border-bottom: 5px solid black;
+    transition-timing-function: linear;
+    transition: stroke-dashoffset 4s, stroke-dasharray 4s;
+  }
+  .shape1 {
+    stroke-dashoffset: 1120;
+  }
+  .shape2 {
+    stroke-dashoffset: -1120;
+  }
+  .text {
+    font-family: 'Roboto Condensed';
+    font-size: 22px;
+    line-height: 32px;
+    letter-spacing: 8px;
+    color: #fff;
+    top: -48px;
+    position: relative;
+  }
+  .svg-wrapper:hover .shape1,
+  .svg-wrapper:hover .shape2 {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1120;
+  }
+  

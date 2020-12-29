@@ -1,0 +1,30 @@
+
+div.jumbotron{
+    background-color:#ffffff;
+    
+}
+.imgtag{
+    text-align:center;
+}
+.imgtag>img{
+    height:625px;
+    width:100%;
+}
+.screenwidth{
+    width:80%;
+    margin:auto;
+}
+// for all icons to change into pointer on hover
+.icons :hover{
+    cursor: pointer;
+}
+@media only screen and (max-width:600px){
+    .imgtag>img{
+        height:300px;
+        width:100%;
+    }
+    .screenwidth{
+        width:100%
+    }
+}
+

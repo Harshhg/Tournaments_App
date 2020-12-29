@@ -1,0 +1,28 @@
+$tabactivecolor:#2a18cc;
+.bottomtab{
+    position: fixed;
+    // height:1px;
+    width:80%;
+    bottom:0px;
+    margin:auto;
+    background-color:#fafafafb;
+    border:2px solid lightgray;
+    z-index: 1;
+}
+
+.btab:hover{
+    cursor: pointer;
+    color:green;
+    // background-color: #6ad7ebaa;
+}
+.btabactive{
+    color:$tabactivecolor
+}
+// .btab:active{
+//     // background-color: red;
+// }
+@media only screen and (max-width:600px){
+    .bottomtab{
+        width:100%;
+    }
+}

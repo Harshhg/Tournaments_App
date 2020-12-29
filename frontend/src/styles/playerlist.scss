@@ -1,0 +1,66 @@
+$hoverplayercolor:lightseagreen;
+.playerlisttab{
+    position: relative;
+    box-shadow: 0px 1px 4px 0px #000000;
+    // width:100%;
+    margin:20px;
+    height:110px;
+    border-radius:20px;
+
+    filter: brightness(50%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+    
+}
+@keyframes anime{
+    0%   {border-top:4px solid red; }
+    25%  {border-left:4px solid goldenrod;}
+    50%  {border-bottom:4px solid blue; }
+    75%  {border-right:4px solid green; }
+    100% {border-top:1px solid red;}
+}
+.plist{
+    padding-bottom: 30px;
+}
+.playerlisttab:hover{
+    border-radius: 15px;
+    filter: brightness(100%);
+    // border: 1px solid red;
+    // background-color:$hoverplayercolor;
+    cursor: pointer;
+    // background-color: red;
+    animation-name: anime;
+    // border:1px solid red;
+    animation-duration: 5s;
+}
+.addplayericon{
+    position: fixed;
+    right:200px;
+    bottom:80px;
+    z-index: 1;
+// width: 21.82px;
+// height: 21.82px;
+// left: 323.09px;
+// top: 557.09px;
+
+// background: #FFFFFF;
+}
+// .addplayericon :hover{
+//     // transform: rotate3d(100,2,3);
+//     // background-color: red;
+//     transition: 0.3s;
+// }
+.addplayerbutton :hover{
+    background-color: red;
+    border-radius: 50px;
+    transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+.playerpic{
+    border-radius: 40px;
+}
+.playerpics{
+    border-radius: 40px;;
+}
