@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { cloneTournament, updateTournament } from '../actions/cloneTournamentAction'
 import '../styles/createtournament.scss'
-import image from '../picture/tennis.jpg'
-function CloneTournament(key) {
+import image from '../assets/tennis.jpg'
+const CloneTournament=(key)=>{
     const id=key.location.state.detail
     const dispatch = useDispatch()
     useEffect(()=>{

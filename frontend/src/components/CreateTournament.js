@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getTournament } from '../actions/createTournamentAction'
 import '../styles/createtournament.scss'
-import image from '../picture/tennis.jpg'
+import image from '../assets/tennis.jpg'
 function CreateTournament() {
     const history=useHistory()
     const [tname,setTName]=useState("");
@@ -15,7 +15,10 @@ function CreateTournament() {
     const [score,setScore]=useState("21");
     const [picture, setPicture] = useState(null);
     const [imgData, setImgData] = useState(image);
-    var data=new FormData()
+    let date=new Date()
+    let mindate=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+    // console.log("mindate",mindate)
+    let data=new FormData()
     data.append('name',tname)
     data.append('start_date',sdate)
     data.append('total_players',player)
@@ -38,7 +41,6 @@ function CreateTournament() {
         dispatch(getTournament(data))
         history.push('/tournaments')
     }
-    
     return (
         <div className="screenwidth">
             <Row className="shadow-sm p-3 mb-2 bg-white rounded text-center">
@@ -53,14 +55,14 @@ function CreateTournament() {
             <img src={imgData} id="playerimg" height="134" width="134" alt="Tournament img" />
             </div>
             <div className="text-center addtournamentphoto">
-                {/* <Button variant="link">Change photo</Button> */}
+                {/* <Button variant="link" Add photo</Button> */}
             </div>
             <Form onSubmit={submitTournament} className="createtournamentform">
                 <FormGroup controlId="tournamentname">
                     <FormControl type="text" placeholder="Auriga TT Championship" value={tname} onChange={e=>setTName(e.target.value)} />
                 </FormGroup>
                 <FormGroup controlId="startingdate">
-                    <FormControl type="date" placeholder="starting date" value={sdate} onChange={e=>setSDate(e.target.value)} />
+                    <FormControl type="date" placeholder="starting date" value={sdate} min={mindate} onChange={e=>setSDate(e.target.value)} />
                 </FormGroup>
                 {/* <FormGroup controlId="enddate">
                     <FormControl type="date" placeholder="End date" value={edate} onChange={e=>setEDate(e.target.value)} />
@@ -79,7 +81,7 @@ function CreateTournament() {
                     </Col>
                 </Row>
                 <FormGroup controlId="image">
-                    <FormControl type="file" accept="image/*" onChange={handleImage} />
+                    <FormControl type="file" accept="image/*" required onChange={handleImage} />
                 </FormGroup>
                 <div className="text-center">
                 <Row>

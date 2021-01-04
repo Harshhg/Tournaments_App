@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Container, Jumbotron ,Row,Col} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import '../styles/welcome.scss';
-function Welcome() {
+const Welcome=()=>{
     const history=useHistory()
     const checkLogin=()=>{
         let check=localStorage.getItem("token")
@@ -11,7 +11,7 @@ function Welcome() {
         }
     }
     return (
-        <div className="screenwidth" onLoad={checkLogin()}>
+        <div className="" onLoad={checkLogin()}>
             <Row>
                 <Col lg={6}>
         <div className="imgtag">
@@ -20,9 +20,9 @@ function Welcome() {
             </Col>
             <Col>
         <Container>            
-        <div>
+        <div className="p-5">
             <Jumbotron className="text-center heading">
-                <h1>Table Tennis Pros</h1>
+                <h1>Tournament app</h1>
             </Jumbotron>
             <Row>
             <Col xs={3} />

@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom'
 import { getEditPlayer } from '../actions/editPlayerAction'
 import { getProfile } from '../actions/profileAction'
 import '../styles/addplayer.scss'
-import blankimage from '../picture/blankimage.jpg'
-function EditPlayer() {
+import blankimage from '../assets/blankimage.jpg'
+const EditPlayer=()=>{
     const history=useHistory()
     const profiledata = useSelector(state => state.profiledata)
     const [name,setName]=useState("");
@@ -41,6 +41,9 @@ function EditPlayer() {
         // let data={'name':name,'gender':gender,'age':age}
         dispatch(getEditPlayer(data))
     }
+    const imageCalled= (e =>{
+        document.getElementById('myimage').click();
+      })
     console.log(profiledata)
     return (
         <div className="screenwidth">
@@ -57,7 +60,7 @@ function EditPlayer() {
             <img src={imgData} id="playerimg" height="134" width="134" alt="player img" />
             </div>
             <div className="text-center addplayerphoto">
-                {/* <Button variant="link">Add photo</Button> */}
+                <Button variant="link" onClick={imageCalled}>Add photo</Button>
             </div>
             {
                 profiledata.pdata &&
@@ -69,13 +72,17 @@ function EditPlayer() {
                     <Row>
                         <Col>
                         <FormControl type="select" placeholder={profiledata.pdata.gender===0?"Male":"Female"} value={gender} required onChange={e=>setGender(e.target.value)} />
+                        {/* <FormControl as="select" value={gender} onChange={e=>{setGender(e.target.value)}}>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        </FormControl> */}
                         </Col>
                     </Row>
                 </FormGroup>
                 <FormGroup controlId="age">
                     <Row>
                         <Col xs={9} lg={10}>
-                            <FormControl type="Integer" placeholder={profiledata.pdata.age} value={age} required onChange={e=>setAge(e.target.value)} />
+                            <FormControl type="number" min="10" max="90" placeholder={profiledata.pdata.age} value={age} required onChange={e=>setAge(e.target.value)} />
                         </Col>
                         <Col>
                             years

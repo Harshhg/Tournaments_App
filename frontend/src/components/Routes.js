@@ -22,7 +22,7 @@ import VerifyMail from './changePassword/VerifyMail';
 import ChangePassword from './changePassword/ChangePassword';
 import GuestTournaments from './guest/GuestTournaments';
 import GuestTournamentDetails from './guest/GuestTournamentDetails';
-function routes() {
+const routes=()=>{
     return (
         <div>
             <BrowserRouter>

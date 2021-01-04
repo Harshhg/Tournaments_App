@@ -1,15 +1,15 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Form, FormControl, FormGroup, FormLabel, Button } from 'react-bootstrap'
+import { Form, FormControl, FormGroup, FormLabel, Button, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Mail = () => {
     const [email,setEmail]=useState("")
     const history=useHistory()
+    let obj={'email':email}
     const handleOtp=(e)=>{
         e.preventDefault()
-        let obj={'email':email}
         axios.post('http://139.59.16.180:8001/sendOTP/',obj)
         .then(response=>{
             console.log(response)
@@ -22,8 +22,12 @@ const Mail = () => {
                     pathname:'/otp',
                     state:{mail:email}
                 })
+            }else if(response.data.error_status===1){
+                Swal.fire({
+                    title:response.data.message,
+                    icon:'error'
+                })
             }
-            // history.push('/otp')
         })
         .catch(error=>{
             console.log("error",error)
@@ -39,12 +43,12 @@ const Mail = () => {
             <div className="text-center">
                <h1 className="text-white">Email</h1>
             </div>
-                <Form>
+                <Form onSubmit={handleOtp}>
                     <FormGroup controlId="email">
                         <FormLabel className="text-white">Enter email address : </FormLabel>
-                        <FormControl type="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required value={email} onChange={e=>setEmail(e.target.value)} />
+                        <FormControl type="email" placeholder="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required value={email} onChange={e=>setEmail(e.target.value)} />
                     </FormGroup>
-                    <Button type="submit" onClick={handleOtp}>Send OTP</Button>
+                    <Col className="text-center"><Button type="submit" >Send OTP</Button></Col>
                 </Form>
 
             </div>

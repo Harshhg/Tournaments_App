@@ -4,14 +4,20 @@ import {Row,Col} from 'react-bootstrap'
 import {ArrowLeft} from 'react-bootstrap-icons'
 import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import blankimage from '../assets/blankimage.jpg'
+import medal from '../assets/medal.png'
 import '../styles/match.scss'
-function Match(props) {
+const Match=(props)=>{
     console.log(props)
     const history=useHistory()
+    const player1_name=props.location.state.player1name
+    const player2_name=props.location.state.player2name
+    const player1_image=props.location.state.player1image
+    const player2_image=props.location.state.player2image
+    const winner=props.location.state.winner_name
     let x=localStorage.getItem('token')
     let y='Token '+x
     let api='http://139.59.16.180:8001/match/score?match_id='+props.location.state.id;
-    console.log(api)
     const [scores,setScores]=useState([])
     useEffect(()=>{
         axios.get(api)
@@ -26,7 +32,7 @@ function Match(props) {
                 icon:'error'
             })
         })
-    },[api,scores,y])
+    },[api,setScores,y])
     return (
         <div class="screenwidth">
             <Row className="shadow-sm p-3 mb-2 bg-white rounded text-center">
@@ -48,22 +54,22 @@ function Match(props) {
                 <Row>
                     <Col lg={6} className="text-center p-3">
                         <div>
-                        <p>John Cena</p>
+                        <p>{player1_name}</p>
                         <div className="firstplayerphoto">
-                            <img src="../Images/table-tennis.jpg" alt="first player pic" className="playersphoto" />
+                            <img src={player1_image || blankimage} alt="first player pic" className="playersphoto" />
                         </div>
                         <div>
-                            <h1>12</h1>
+                            {/* <h1>12</h1> */}
                         </div>
                         </div>
                     </Col>
                     <Col lg={6} className="text-center p-3">
-                        <p>Brock Lesnar</p>
+                        <p>{player2_name}</p>
                         <div className="secondplayerphoto">
-                            <img src="../Images/table-tennis.jpg" alt="second player pic" className="playersphoto" />
+                            <img src={player2_image || blankimage} alt="second player pic" className="playersphoto" />
                         </div>
                         <div>
-                            <h1>5</h1>
+                            {/* <h1>5</h1> */}
                         </div>
                     </Col>
                 </Row>
@@ -97,7 +103,10 @@ function Match(props) {
                 </div>:""}
                 </div>
                     )} 
-                    
+                <div className="winner">
+                    <img src={medal} alt="medal" className="winner-medal" />
+                    <h4>{winner} won the match</h4>
+                </div>
         </div>
     )
 }

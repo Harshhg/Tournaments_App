@@ -4,7 +4,7 @@ import { Plus } from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom';
 // import { ArrowRight } from 'react-bootstrap-icons';
 import '../styles/tournamentsheading.scss';
-function Tournamentsheading() {
+const Tournamentsheading=()=>{
     const history=useHistory()
     return (
         <div>

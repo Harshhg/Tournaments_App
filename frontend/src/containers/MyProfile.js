@@ -1,7 +1,7 @@
 import React from 'react'
 import {Row,Col} from 'react-bootstrap'
 
-function MyProfile() {
+const MyProfile=()=>{
     return (
         <div>
             <Row>

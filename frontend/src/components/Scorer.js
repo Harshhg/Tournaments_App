@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getScorer } from '../actions/scorerAction'
 import '../styles/scorer.scss'
-function Scorer(data) {
+const Scorer=(data)=>{
     // console.log("data from the matches",data)
     let id=data.location.state.id
     let player1id=data.location.state.player_1_id

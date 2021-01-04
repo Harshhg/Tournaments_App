@@ -8,13 +8,14 @@ const VerifyMail = (data) => {
     // console.log(data.location.state.mail)
     const [otp,setOtp]=useState("")
     // const [email,setEmail]=useState("")
+    const email=data.location.state.mail
     const history=useHistory()
+    let obj={'email':email,'otp':otp}
     const handleVerify=(e)=>{
         e.preventDefault()
-        let obj={'email':data.location.state.mail,'otp':otp}
+        
         axios.post('http://139.59.16.180:8001/verifyOTP/',obj)
         .then(response=>{
-            console.log(response.data.data.token)
             if(response.data.error_status===0){
                 Swal.fire({
                     title:response.data.message,
@@ -60,16 +61,12 @@ const VerifyMail = (data) => {
             <div className="text-center">
                <h1 className="text-white">Verify OTP</h1>
             </div>
-                <Form>
-                    {/* <FormGroup controlId="email">
-                        <FormLabel className="text-white">Enter email address :</FormLabel>
-                        <FormControl type="email" value={email} pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={e=>setEmail(e.target.value)} />
-                    </FormGroup> */}
+                <Form onSubmit={handleVerify}>
                     <FormGroup controlId="otp">
                         <FormLabel className="text-white">Enter OTP : </FormLabel>
-                        <FormControl type="text" value={otp} onChange={e=>setOtp(e.target.value)}></FormControl>
+                        <FormControl type="text" value={otp}  required onChange={e=>setOtp(e.target.value)}></FormControl>
                     </FormGroup>
-                    <Col className="text-center" ><Button type="submit" onClick={handleVerify}>Submit</Button></Col>
+                    <Col className="text-center" ><Button type="submit">Submit</Button></Col>
                     <Col className="text-center"><Button variant="link" onClick={handleOtp}>Resend OTP</Button></Col>
                 </Form>
             </div> 

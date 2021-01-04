@@ -4,7 +4,7 @@ import {Row,Col, Container } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { guestTournamentDetail } from './guestTournamentDetailAction'
-import photo from '../../picture/tennis.jpg'
+import photo from '../../assets/tennis.jpg'
 const GuestTournamentDetails = (id) => {
     const history=useHistory()
     const dispatch =useDispatch()

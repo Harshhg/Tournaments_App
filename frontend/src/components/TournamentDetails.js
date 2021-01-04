@@ -5,9 +5,9 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTournamentDetail } from '../actions/tournamentDetailAction'
 import { deleteTournament } from '../actions/deleteTournamentAction'
-import photo from '../picture/tennis.jpg'
+import photo from '../assets/tennis.jpg'
 import { confirmAlert } from 'react-confirm-alert';
-function TournamentDetails(id) {
+const TournamentDetails=(id)=>{
     const history=useHistory()
     const dispatch =useDispatch()
     const tournamentdetail=useSelector(state=>state.tournamentdetail)
@@ -15,7 +15,7 @@ function TournamentDetails(id) {
     useEffect(()=>{
         dispatch(getTournamentDetail(key))
     },[dispatch,key])
-    function handleDelete(){
+    const handleDelete=()=>{
         confirmAlert({
             title: 'Delete Tournament',
             message: 'Are you sure to do this.',
@@ -35,19 +35,19 @@ function TournamentDetails(id) {
         // let t_id={'tournament_id':key}
         // dispatch(deleteTournament(t_id))
     }
-    function handleDraw(score){
+    const handleDraw=(score)=>{
         history.push({
             pathname:"/createdraw",
             state:{detail:key,maxscore:score}
         })
     }
-    function handleClone(){
+    const handleClone=()=>{
         history.push({
             pathname:"clonetournament",
             state:{detail:key}
         })
     }
-    console.log(tournamentdetail)
+    // console.log(tournamentdetail)
     return (
         <div className="screenwidth">
             <Row className="shadow-sm p-3 mb-2 bg-white rounded text-center">
@@ -119,16 +119,17 @@ function TournamentDetails(id) {
                 tournamentdetail.tdetail.map(item=>
                     <div key={item.id} >
                         { item.is_match_created ?
-                        <div className="bottomtab text-center p-2 bg-primary text-white icons" id="dr">
+                        <>
+                        {/* <div className="bottomtab text-center p-2 bg-primary text-white icons" id="dr">
                            <Row> 
-                            <Col lg={6}>
+                            <Col xs={6} lg={6}>
                             <h4 onClick={()=>history.push({
                             pathname:"/matches",
                                     state:{detail:key,max_score:item.max_score}
                                 })
                             }>View Matches</h4>
                             </Col>
-                            <Col lg={6}>
+                            <Col xs={6} lg={6}>
                                 <h4 onClick={()=>history.push({
                                     pathname:"/fixtures",
                                     state:{detail:key}
@@ -136,8 +137,26 @@ function TournamentDetails(id) {
                             }>Fixtures</h4>
                             </Col>
                             </Row>
+                    </div> */}
+                    <div className="bottomtab">
+                    <Row>
+                        <Col className="text-center mr-1 p-2 ml-3 bg-primary text-white icons" id="dd">
+                        <h4 onClick={()=>history.push({
+                            pathname:"/matches",
+                                    state:{detail:key,max_score:item.max_score}
+                                })
+                            }>View Matches</h4>
+                        </Col>
+                        <Col className="ml-1 text-center mr-3 p-2 bg-primary text-white icons" id="dr">
+                        <h4 onClick={()=>history.push({
+                                    pathname:"/fixtures",
+                                    state:{detail:key}
+                                })
+                            }>Fixtures</h4>
+                        </Col>
+                    </Row>
                     </div>
-                    
+                    </>
                         :
             <div className="bottomtab text-center p-2 bg-primary text-white"><h4 onClick={()=>handleDraw(item.max_score)}>Create Draws</h4></div>
                  } </div>

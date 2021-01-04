@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom'
 import { getOngoingTournament, getPreviousTournament, getUpcomingTournament } from '../actions/tournamentActions'
 // import TournamentDetails from '../components/TournamentDetails'
 import '../styles/navigationtabs.scss'
-import image from '../picture/tennis.jpg'
-function Navigationtabs() {
+import image from '../assets/tennis.jpg'
+const Navigationtabs=()=>{
     const tournament = useSelector(state => state.tournament)
     const dispatch=useDispatch()
     const history=useHistory()
@@ -15,7 +15,7 @@ function Navigationtabs() {
         dispatch(getUpcomingTournament())
         dispatch(getPreviousTournament())
     },[dispatch])
-    function handleTournament(id){
+    const handleTournament=(id)=>{
         // alert(id)
         history.push({
             pathname:"/tournamentdetails",
@@ -23,7 +23,7 @@ function Navigationtabs() {
         })
         // TournamentDetails(t)
     }
-    function handleauth(){
+    const handleauth=()=>{
         let log=localStorage.getItem("token")
         let guest=localStorage.getItem("guest")
         if(log){
@@ -69,7 +69,7 @@ function Navigationtabs() {
                             <Col xs={3} sm={1}>
                                 <img src={item?.tournament_image || image} height="80" width="80" alt="Pic" className="tournamentpic" />
                             </Col>
-                            <Col xs={8} sm={10} className="p-4"> 
+                            <Col xs={8} sm={10} className="p-4 ml-2"> 
                                 <h6>{item.name}</h6>
                                 <p>Starts on : {item.start_date}</p>
                                 {/* <p>Last date of registration :{item.end_date}</p> */}
@@ -86,9 +86,9 @@ function Navigationtabs() {
                     <div key={item.id} className="ongoingtournamenttab" onClick={()=>handleTournament(item.id)}>
                         <Row>
                             <Col xs={3} sm={1}>
-                                <img src={item?.tournament_image || image} height="80" width="80" alt="Pic"className="tournamentpic" />
+                                <img src={item?.tournament_image || image} height="80" width="80" alt="Pic" className="tournamentpic" />
                             </Col>
-                            <Col xs={8} sm={10} className="p-4">
+                            <Col xs={8} sm={10} className="p-4 ml-2">
                                 <h6>{item.name}</h6>
                                 <p>Starts on : {item.start_date}</p>
                                 {/* <p>Last date of registration :{item.end_date}</p> */}
@@ -107,7 +107,7 @@ function Navigationtabs() {
                             <Col xs={3} sm={1}>
                                 <img src={item?.tournament_image || image} height="80" width="80" alt="Pic" className="tournamentpic" />
                             </Col>
-                            <Col xs={8} sm={10} className="p-4">
+                            <Col xs={8} sm={10} className="p-4 ml-2">
                                 <h6>{item.name}</h6>
                                 <p>Starts on : {item.start_date}</p>
                                 {/* <p>Last date of registration :{item.end_date}</p> */}

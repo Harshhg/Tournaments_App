@@ -3,7 +3,7 @@ import Bottomtab from '../containers/Bottomtab'
 import Navigationtabs from '../containers/Navigationtabs'
 import Tournamentsheading from '../containers/Tournamentsheading'
 
-function Tournaments() {
+const Tournaments=()=> {
     return (
         <div className="screenwidth">
             <Tournamentsheading />

@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFixtures } from '../actions/fixturesAction'
-import blankimage from '../picture/blankimage.jpg'
+import blankimage from '../assets/blankimage.jpg'
+import trophy from '../assets/trophy.png'
 import '../styles/fixtures.scss'
 import { useHistory } from 'react-router-dom';
-function Fixtures(key) {
+import { Col, Row } from 'react-bootstrap'
+import { ArrowLeft } from 'react-bootstrap-icons'
+import Swal from 'sweetalert2'
+const Fixtures=(key)=>{
     const id=key.location.state.detail
     const fixture = useSelector(state => state.fixture)
     const history=useHistory()
@@ -12,16 +16,33 @@ function Fixtures(key) {
     useEffect(()=>{
         dispatch(getFixtures(id))
     },[dispatch,id])
-    console.log(fixture)
-      const showScore=(match_id)=>{
+    // console.log(fixture)
+      const showScore=(match_id,player1_name,player2_name,player1_image,player2_image,winner,iscomplete)=>{
+        if(player2_name==="null"){
+
+        }else if(iscomplete===false){
+            Swal.fire({
+                title:'Oops',
+                text:"Match isn't completed yet !"
+            })
+        }else{
           history.push({
               pathname:'/match',
-              state:{id:match_id}
+              state:{id:match_id,player1name:player1_name,player2name:player2_name,player1image:player1_image,player2image:player2_image,winner_name:winner}
           })
+        }
       }
 
     return (
         <div>
+            <Row className="shadow-sm p-3 mb-2 bg-white rounded text-center">
+                <Col lg={1} xs={2} className="icons" ><ArrowLeft size="lg" height="30" width="30" onClick={()=>history.goBack()} /></Col>
+                <Col lg={10} xs={9}>
+                    <h3 >Fixtures</h3>
+                </Col>
+                <Col lg={1} xs={1}>
+                </Col>
+            </Row>
             <div className="bracket">
             {
                 fixture &&
@@ -36,14 +57,22 @@ function Fixtures(key) {
                 <>
                 {
                     item.match_data.map(matchitem=>
-                    <div className="playerbo match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id)}>
+                    <div className="playerbo match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id,matchitem?.player1?.name || "null",matchitem?.player2?.name || "null",matchitem?.player1?.profile_image || blankimage,matchitem?.player2?.profile_image || blankimage,matchitem?.winner?.name,matchitem.is_completed)}>
                 <div className="playe1 tet-center match-top team">
                 <span class="seed"><img src={matchitem?.player1?.profile_image || blankimage} alt="" className='fimg'/></span>
-                    {matchitem?.player1?.name || "-"}
+                            {matchitem?.player1?.name || "-"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player1?.id)?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>            
                 </div>
                 <div className="playe2 tet-center match-bottom team">
                 <span class="seed"><img src={matchitem?.player2?.profile_image || blankimage} alt="" className='fimg'/></span>
-                    {matchitem?.player2?.name || "-"}
+                            {matchitem?.player2?.name || "-"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player2?.id)?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>
                 </div>
                 
                 <div class="match-lines">
@@ -65,14 +94,22 @@ function Fixtures(key) {
                 <>
                 {
                     item.match_data.map(matchitem=>
-                    <div className="playerbx match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id)}>
+                    <div className="playerbx match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id,matchitem?.player1?.name || "null",matchitem?.player2?.name || "null",matchitem?.player1?.profile_image || blankimage,matchitem?.player2?.profile_image || blankimage,matchitem?.winner?.name,matchitem.is_completed)}>
                 <div className="playe1 tet-center match-top team">
                 <span class="seed"><img src={matchitem?.player1?.profile_image || blankimage} alt="" className='fimg'/></span>
-                        {matchitem?.player1?.name || "player not decided yet"}
+                            {matchitem?.player1?.name || "player not decided yet"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player1?.id  && matchitem?.winner?.id!=="")?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>
                 </div>
                 <div className="playr2 tet-center match-bottom team">
                 <span class="seed"><img src={matchitem?.player2?.profile_image || blankimage} alt="" className='fimg'/></span>
-                        {matchitem?.player2?.name || "player not decided yet"}
+                            {matchitem?.player2?.name || "player not decided yet"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player2?.id  && matchitem?.winner?.id!=="")?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>
                 </div>
 
                 <div class="match-lines">
@@ -92,14 +129,22 @@ function Fixtures(key) {
                 <>
                 {
                     item.match_data.map(matchitem=>
-                    <div className="playerbx match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id)}>
+                    <div className="playerbx match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id,matchitem?.player1?.name || "null",matchitem?.player2?.name || "null",matchitem?.player1?.profile_image || blankimage,matchitem?.player2?.profile_image || blankimage,matchitem?.winner?.name,matchitem.is_completed)}>
                 <div className="playr1 tet-center match-top team">
                 <span class="seed"><img src={matchitem?.player1?.profile_image || blankimage} alt="" className='fimg'/></span>
-                        {matchitem?.player1?.name}
+                            {matchitem?.player1?.name || "player not decided yet"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player1?.id  && matchitem?.winner?.id!=="")?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>
                 </div>
                 <div className="playe2 tet-center match-bottom team">
                 <span class="seed"><img src={matchitem?.player2?.profile_image || blankimage} alt="" className='fimg'/></span> 
-                        {matchitem?.player2?.name}
+                            {matchitem?.player2?.name || "player not decided yet"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player2?.id  && matchitem?.winner?.id!=="")?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>
                 </div>
 
                 <div class="match-lines">
@@ -121,14 +166,22 @@ function Fixtures(key) {
                 <>
                 {
                     item.match_data.map(matchitem=>
-                    <div className="playerbx match winner-top" key={matchitem.match_id}>
+                    <div className="playerbx match winner-top" key={matchitem.match_id} onClick={()=>showScore(matchitem.match_id,matchitem?.player1?.name || "null",matchitem?.player2?.name || "null",matchitem?.player1?.profile_image || blankimage,matchitem?.player2?.profile_image || blankimage,matchitem?.winner?.name,matchitem.is_completed)}>
                 <div className="playr1 tet-center match-top team">
                 <span class="seed"><img src={matchitem?.player1?.profile_image || blankimage} alt="" className='fimg'/></span>
-                        {matchitem?.player1?.name}
+                        {matchitem?.player1?.name || "player not decided yet"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player1?.id  && matchitem?.winner?.id!=="")?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}  
+                </span>    
                 </div>
                 <div className="playe2 tet-center match-bottom team">
                 <span class="seed"><img src={matchitem?.player2?.profile_image || blankimage} alt="" className='fimg'/></span>
-                        {matchitem?.player2?.name}
+                        {matchitem?.player2?.name || "player not decided yet"}
+                <span className="score">{(matchitem?.winner?.id===matchitem?.player2?.id  && matchitem?.winner?.id!=="")?
+                            <img src={trophy} className="t" height="30" width="30" alt="trophy" />:
+                            ""}
+                </span>
                 </div>
 
                 <div class="match-lines">

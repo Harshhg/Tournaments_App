@@ -10,7 +10,8 @@ export const getAddPlayer=(obj)=>{
             const playerdata=response.data
             Swal.fire({
                 title:playerdata.message,
-                icon:'success'
+                icon:'success',
+                showConfirmButton: false,
             })
             dispatch(getAddPLayerSuccess(playerdata.message))
         })

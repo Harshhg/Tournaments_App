@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap'
 import '../styles/bottomtab.scss'
 import { PersonFill, PersonPlusFill, TrophyFill} from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom';
-function Bottomtab() {
+const Bottomtab=()=>{
     const history=useHistory()
     return (
         <div className="bottomtab">

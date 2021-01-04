@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getPlayerDetail } from '../actions/playerDetailAction'
 import '../styles/playerdetail.scss'
-import blankimage from '../picture/blankimage.jpg'
-function PlayerDetail(id) {
+import blankimage from '../assets/blankimage.jpg'
+const PlayerDetail=(id)=>{
     const history=useHistory()
     const dispatch = useDispatch()
     const playerdetail = useSelector(state => state.playerdetail)
@@ -19,7 +19,7 @@ function PlayerDetail(id) {
     return (
         <div className="screenwidth">
             <Row className="shadow-sm p-3 mb-2 bg-white rounded text-center">
-                <Col lg={1} xs={2}><ArrowLeft width="30" height="40" onClick={()=>history.goBack()} /></Col>
+                <Col lg={1} xs={2} className="icons"><ArrowLeft width="30" height="40" onClick={()=>history.goBack()} /></Col>
                 <Col lg={10} xs={9}>
                     <h3 >Player Details</h3>
                 </Col>
@@ -39,9 +39,6 @@ function PlayerDetail(id) {
                     <img src={item?.profile_image || blankimage} className="shadow-lg m-3 " id="playerphotos" height="154" width="154" alt="player pic" />
                     </Col>
                     <Col xs={6}>
-                        <h3 className="newhead">
-                            Name : {item.name}
-                        </h3>
                         <h3 className="newhead">
                             Age : {item.age}
                         </h3>

@@ -15,13 +15,7 @@ $hoverplayercolor:lightseagreen;
     transition: all 1s ease;
     
 }
-@keyframes anime{
-    0%   {border-top:4px solid red; }
-    25%  {border-left:4px solid goldenrod;}
-    50%  {border-bottom:4px solid blue; }
-    75%  {border-right:4px solid green; }
-    100% {border-top:1px solid red;}
-}
+
 .plist{
     padding-bottom: 30px;
 }
@@ -35,6 +29,7 @@ $hoverplayercolor:lightseagreen;
     animation-name: anime;
     // border:1px solid red;
     animation-duration: 5s;
+    box-shadow: 0px 5px 14px 0px #000000;
 }
 .addplayericon{
     position: fixed;
@@ -57,6 +52,7 @@ $hoverplayercolor:lightseagreen;
     background-color: red;
     border-radius: 50px;
     transition: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+    box-shadow: 0px 5px 14px 0px #000000;
 }
 .playerpic{
     border-radius: 40px;

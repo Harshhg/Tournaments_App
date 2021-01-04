@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { getProfile } from '../actions/profileAction';
 import MyProfile from '../containers/MyProfile'
 import '../styles/profile.scss';
-import blankimage from '../picture/blankimage.jpg'
-function Profile() {
+import blankimage from '../assets/blankimage.jpg'
+const Profile=()=>{
     const history=useHistory()
     const profiledata=useSelector(state=>state.profiledata)
     const dispatch = useDispatch()
@@ -15,10 +15,10 @@ function Profile() {
     useEffect(()=>{
         dispatch(getProfile())
     },[dispatch])
-    function handleLogout(){
+    const handleLogout=()=>{
         localStorage.clear()
     }
-    function handleauth(){
+    const handleauth=()=>{
         let log=localStorage.getItem("token")
         if(log){
         }else{
@@ -26,7 +26,7 @@ function Profile() {
         }
     }
     // const [imgData, setImgData] = useState(profiledata?.pdata?.profile_imageurl || blankimage);
-    console.log(profiledata)
+    // console.log(profiledata)
     return (
         <div className="screenwidth" onLoad={handleauth()}>
             

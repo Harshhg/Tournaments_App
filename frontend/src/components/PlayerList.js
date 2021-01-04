@@ -5,8 +5,8 @@ import {TrophyFill,PersonFill, PlusCircleFill, Dot, PersonPlusFill} from 'react-
 import '../styles/playerlist.scss'
 import {useSelector,useDispatch} from 'react-redux'
 import { getPlayerList } from '../actions/playerListActions'
-import blankimage from '../picture/blankimage.jpg'
-function PlayerList() {
+import blankimage from '../assets/blankimage.jpg'
+const PlayerList=()=>{
     const personlist = useSelector(state => state.personlist)
     // console.log(personlist)
     const dispatch=useDispatch()
@@ -14,14 +14,14 @@ function PlayerList() {
         dispatch(getPlayerList())
     },[dispatch])
     const history=useHistory()
-    function handlePlayer(id){
+    const handlePlayer=(id)=>{
         // alert(id)
         history.push({
             pathname:'/playerdetail',
             state:{detail:id}
         })
     }
-    function handleauth(){
+    const handleauth=()=>{
         let log=localStorage.getItem("token")
         if(log){
         }else{

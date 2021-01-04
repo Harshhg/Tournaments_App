@@ -11,7 +11,7 @@ export const getLogin=(obj)=>{
             localStorage.setItem('token',token)
             if(logindata.message==="Login Successful !!"){
             Swal.fire({
-                title:"Login Scuccessful",
+                title:"Login Successful",
                 icon:'success',
                 timer:100000
             })

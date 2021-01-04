@@ -4,47 +4,47 @@ import { DashCircleFill, PlusCircleFill, Search } from 'react-bootstrap-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getGenerateDraw } from '../actions/generateDrawAction'
-import { getPlayerList } from '../actions/playerListActions'
-import { getSearchPlayer } from '../actions/searchPlayerAction'
+import { getAllSearchPlayer, getSearchPlayer } from '../actions/searchPlayerAction'
 // import { getTournamentDetail } from '../actions/tournamentDetailAction'
 import { AddTournamentPlayer, DeleteTournamentPlayer } from '../actions/tournamentPlayerAction'
 import CreateDrawHeading from '../containers/CreateDrawHeading'
-import blankimage from '../picture/blankimage.jpg'
-
-function CreateDraw(id) {
+import blankimage from '../assets/blankimage.jpg'
+const CreateDraw=(id)=>{
     const [search,setSearch]=useState("")
     const history=useHistory()
     const dispatch = useDispatch()
     const key=id.location.state.detail
     const score=id.location.state.maxscore
     const searchplayer = useSelector(state => state.searchplayer)
-    const personlist = useSelector(state => state.personlist)
     useEffect(()=>{
-        dispatch(getPlayerList())
-    },[dispatch])
-    function handleChange(name){
+        dispatch(getAllSearchPlayer(key))
+    },[dispatch,key])
+    const handleChange=(name)=>{
         dispatch(getSearchPlayer(name,key))
     }
-    function handleDraw(){
+    const handleDraw=()=>{
         dispatch(getGenerateDraw(key))
         history.push({
             pathname:'/matches',
             state:{detail:key,max_score:score}
         })
     }
-    function handleAdd(playerid){
+    const handleAdd=(playerid)=>{
         let obj={'tournament_id':key,'player_id':playerid}
         dispatch(AddTournamentPlayer(obj))
         document.getElementById("plusbutton"+playerid).style.display="none"
         document.getElementById("minusbutton"+playerid).style.display="block"
     }
-    function handleDelete(playerid){
+    const handleDelete=(playerid)=>{
         let obj={'tournament_id':key,'player_id':playerid}
         dispatch(DeleteTournamentPlayer(obj))
         document.getElementById("plusbutton"+playerid).style.display="block"
         document.getElementById("minusbutton"+playerid).style.display="none"
     }
-    console.log(personlist)
+    // const playercount=()=>{
+
+    // }
+    // console.log(searchplayer)
     return (
         <div className="screenwidth">
             <CreateDrawHeading />
@@ -60,7 +60,7 @@ function CreateDraw(id) {
                 searchplayer &&
                 searchplayer.sdata &&
                 searchplayer.sdata.map(item=>
-                    <div key={item.id}>
+                    <div key={item.id} style={{ width:"88%", margin:"10px auto" }}>
                        <Row className="p-3">
                     <Col xs={3} lg={1}>
                         <div className="playerpic">
@@ -73,11 +73,13 @@ function CreateDraw(id) {
                     </Col>
                     <Col xs={2} sm={2}>
                         <div>
-                        {/* {
-                         item.is_added? */}
-                        <DashCircleFill className="b" id={"minusbutton"+item.id} style={{display:"none"}} color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
-                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" height="40" width="40" onClick={()=>handleAdd(item.id)} />
-                        {/* } */}
+                        {
+                         item.is_added?
+                        <><DashCircleFill className="b" id={"minusbutton"+item.id}  color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
+                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" style={{display:"none"}} height="40" width="40" onClick={()=>handleAdd(item.id)} /></>:
+                        <><DashCircleFill className="b" id={"minusbutton"+item.id} style={{display:"none"}} color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
+                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" height="40" width="40" onClick={()=>handleAdd(item.id)} /></>
+                         } 
                         </div>
                         {/* <div onLoad={handleSign(item.id,item.is_added)}></div> */}
                     </Col>
@@ -87,9 +89,9 @@ function CreateDraw(id) {
             }
             <div>
                 {
-                    personlist &&
-                    personlist.person &&
-                    personlist.person.map(item=>
+                    searchplayer &&
+                    searchplayer.playerdata &&
+                    searchplayer.playerdata.map(item=>
                 <div key={item.id} style={{ width:"88%", margin:"10px auto"}}>
                        <Row className="p-3">
                     <Col xs={3} lg={1}>
@@ -103,19 +105,24 @@ function CreateDraw(id) {
                     </Col>
                     <Col xs={2} sm={2}>
                         <div>
-                        {/* {
-                        item.is_added?
-                        <DashCircleFill className="b" color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />:
-                        <PlusCircleFill id={item.id} color="#54D17B" height="40" width="40" onClick={()=>handleAdd(item.id)} />
-                        } */}
-                         <DashCircleFill className="b" id={"minusbutton"+item.id} style={{display:"none"}} color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
-                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" height="40" width="40" onClick={()=>handleAdd(item.id)} />
-                       
+                         {/* <DashCircleFill className="b" id={"minusbutton"+item.id} style={{display:"none"}} color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
+                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" height="40" width="40" onClick={()=>handleAdd(item.id)} /> */}
+                        {
+                         item.is_added?
+                        <><DashCircleFill className="b" id={"minusbutton"+item.id}  color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
+                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" style={{display:"none"}} height="40" width="40" onClick={()=>handleAdd(item.id)} /></>:
+                        <><DashCircleFill className="b" id={"minusbutton"+item.id} style={{display:"none"}} color="#DC6562" height="40" width="40" onClick={()=>handleDelete(item.id)} />
+                        <PlusCircleFill id={"plusbutton"+item.id}  color="#54D17B" height="40" width="40" onClick={()=>handleAdd(item.id)} /></>
+                         } 
                         </div>
                         {/* <div onLoad={handleSign(item.id,item.is_added)}></div> */}
                     </Col>
                 </Row>
                     </div>)}
+
+                    {
+
+                    }
             
 
             </div>

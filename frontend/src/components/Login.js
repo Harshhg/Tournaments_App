@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { getLogin } from '../actions/loginActions';
 import '../styles/login.scss';
 // import { useAlert } from 'react-alert'
-function Login() {
+const Login=()=>{
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     // const alert=useAlert()
@@ -42,7 +42,7 @@ function Login() {
                 </div>
             <Form onSubmit={submitLogin}>
                 <FormGroup controlId="email">
-                    <FormControl type="email" placeholder="email address" /*pattern="/^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]"*/ pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required autoFocus value={email} onChange={e=>setEmail(e.target.value)} />
+                    <FormControl type="email" placeholder="email address"  pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required autoFocus value={email} onChange={e=>setEmail(e.target.value)} />
                 </FormGroup>
                 <FormGroup>
                     <FormControl type="password" placeholder="password" required value={password} onChange={e=>setPassword(e.target.value)} />
@@ -52,50 +52,6 @@ function Login() {
                     <Col xs={6}>
                 <Button type="submit" size="lg" className="btn-block bg-white text-primary" >Continue</Button>
                 </Col>
-                {/* <Col className="text-center">
-                <Button  variant="link" onClick={()=>
-                    Swal.fire({
-                        title:'Forgot Password',
-                        text:'Enter email',
-                        input:'text',
-                        showCancelButton:true,
-                        confirmButtonText:'send OTP',
-                        showLoaderOnConfirm: true,
-                        preConfirm: (login) => {
-                            return fetch(`//api.github.com/users/${login}`)
-                              .then(response => {
-                                  console.log("response",response)
-                                if (response.ok) {
-                                //   throw new Error(response.statusText)
-                                Swal.fire({
-                                    title:'enter OTP',
-                                    input:'text',
-                                    showCancelButton:true,
-                                    confirmButtonText:'Verify',
-                                    
-                                })
-                                }
-                                return response.json()
-                              })
-                              .catch(error => {
-                                Swal.showValidationMessage(
-                                  `Request failed: ${error}`
-                                )
-                              })
-                          },
-                          allowOutsideClick: () => !Swal.isLoading()
-                    }).then((result) => {
-                        console.log("result",result)
-                        if (result.isConfirmed) {
-                          Swal.fire({
-                            title: `${result.value.login}'s avatar`,
-                            imageUrl: result.value.avatar_url
-                          })
-                        }
-                      })
-
-                }>Forgot passworrd</Button>
-                </Col> */}
                 <Col className="text-center"><Button variant="link" onClick={()=>history.push('/')}></Button></Col>
                 <Col className="text-center"><Button variant="link" onClick={()=>history.push('/mail')}>Forgot password</Button></Col>
                 </Row>

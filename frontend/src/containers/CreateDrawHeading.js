@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 import {ArrowLeft} from 'react-bootstrap-icons'
 import { useHistory } from 'react-router-dom'
-function CreateDrawHeading() {
+const CreateDrawHeading=()=>{
     const history=useHistory()
     return (
         <div>

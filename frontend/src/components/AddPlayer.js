@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getAddPlayer } from '../actions/addPlayerAction'
 import '../styles/addplayer.scss'
-import image from '../picture/tennis.jpg'
+import image from '../assets/tennis.jpg'
 // import ReactCrop from 'react-image-crop'
 // import 'react-image-crop/lib/ReactCrop.scss';
-function AddPlayer() {
+const AddPlayer=()=>{
     const history=useHistory()
     const [name,setName]=useState("");
     const [email,setEmail]=useState("");
@@ -21,7 +21,7 @@ function AddPlayer() {
     // let reader=new FileReader()
     const [picture, setPicture] = useState(null);
     const [imgData, setImgData] = useState(image);
-    var data=new FormData()
+    let data=new FormData()
     data.append('name',name)
     data.append('email',email)
     data.append('gender',gender)
@@ -57,7 +57,7 @@ function AddPlayer() {
 
     // }
     data.append('profile_image',picture)
-    function addPlayer(e){
+    const addPlayer=(e)=>{
         e.preventDefault()
         // console.log("ddddddddddd",f)
         // let data={'name':name,'email':email,'gender':gender,'age':age,'profile_image':picture}
@@ -99,7 +99,7 @@ function AddPlayer() {
                 <FormGroup controlId="age">
                     <Row>
                         <Col xs={9} lg={10}>
-                            <FormControl type="number" placeholder="Age" value={age} min="1" max="99" onChange={e=>setAge(e.target.value)} />
+                            <FormControl type="number" placeholder="Age" value={age} min="10" max="90" onChange={e=>setAge(e.target.value)} />
                         </Col>
                         <Col>
                             years

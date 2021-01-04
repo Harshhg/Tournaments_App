@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-import Tournamentsheading from '../../containers/Tournamentsheading'
 import { Col, Nav, Row, Tab} from 'react-bootstrap'
-// import image from '../../picture/tennis.jpg'
-import image from '../../picture/tennis.jpg'
+import image from '../../assets/tennis.jpg'
 import '../../styles/navigationtabs.scss'
 import { useHistory } from 'react-router-dom'
 import { guestOngoingTournament, guestUpcomingTournament, guestPreviousTournament} from './guestTournamentAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { ArrowLeft } from 'react-bootstrap-icons'
 const GuestTournaments = () => {
     // const handleGuest=()=>{
         // localStorage.clear()
@@ -30,7 +29,15 @@ const GuestTournaments = () => {
     }
     return (
         <div className="screenwidth" >
-            <Tournamentsheading />
+            {/* <Tournamentsheading /> */}
+            <Row className="shadow-sm p-3 mb-2 bg-white rounded text-center">
+                <Col lg={1} xs={2} className="icons" ><ArrowLeft size="lg" height="30" width="30" onClick={()=>history.goBack()} /></Col>
+                <Col lg={10} xs={9}>
+                    <h3 >Tournaments</h3>
+                </Col>
+                <Col lg={1} xs={1}>
+                </Col>
+            </Row>
             <Tab.Container id="example" defaultActiveKey="Ongoing">
             <Row>
             <Col sm={12} xs={12} className="text-center">

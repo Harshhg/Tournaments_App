@@ -4,9 +4,9 @@ import { EyeFill, EyeSlash } from 'react-bootstrap-icons'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getsignup } from '../actions/signupAction'
-import '../styles/signup.scss'
 import { useAlert } from 'react-alert'
-function Signup() {
+import '../styles/signup.scss'
+const Signup=()=>{
     const [fname,setFirstName]=useState("")
     const [lname,setLastName]=useState("")
     const [email,setEmail]=useState("")
@@ -19,48 +19,26 @@ function Signup() {
     const alert=useAlert()
     const validation=()=>{
         if(fname===" "){
-            // document.getElementById("fname").setCustomValidity("Name cannot be null or left blank");
             alert.show("First name cannot be empty")
             return false;
         }else if(lname===" "){
-            // document.getElementById('lname').setCustomValidity("Last name cannot be left blank.");
             alert.error("last name cannot be empty !")
             return false;
         }else if(password!==confirmpassword){
-            // document.getElementById("confirmpassword").setCustomValidity("Passwords Don't Match");
-            // document.getElementById("confirm").innerHTML="Password mismatch";
-            alert.error("Password cannot match with confirm password !")
+            alert.error("Password doesnot match !")
             return false;
         }
         return true;
 
     }
-    function submitSignup(e){
+    const submitSignup=(e)=>{
         e.preventDefault()
-        // if(password===confirmpassword){
-        // let obj={'first_name':fname,'last_name':lname,'email':email,'password':password}
-        // dispatch(getsignup(obj))
-        // }else 
-        // if(fname===" "){
-        //     e.preventDefault()
-        //     document.getElementById("fname").setCustomValidity("Name cannot be null or left blank")
-        // }else if(lname===" "){
-        //     e.preventDefault()
-        //     document.getElementById('lname').setCustomValidity("Last name cannot be left blank.")
-        // }else if(password!==confirmpassword){
-        //     document.getElementById("confirmpassword").setCustomValidity("Passwords Don't Match");
-        //     // document.getElementById("confirm").innerHTML="Password mismatch";
-        // }else{
-        //     e.preventDefault()
-        //     let obj={'first_name':fname,'last_name':lname,'email':email,'password':password}
-        //     dispatch(getsignup(obj))
-        // }
         const isvalid=validation()
         if(isvalid){
             let obj={'first_name':fname,'last_name':lname,'email':email,'password':password}
             dispatch(getsignup(obj))
         }
-        console.log("is valid ",isvalid)
+        // console.log("is valid ",isvalid)
         
     }
     const handleconfirm=(props)=>{
